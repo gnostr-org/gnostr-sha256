@@ -1,0 +1,13 @@
+[package]
+name = "gnostr-sha256"
+version = "0.0.0"
+edition = "2018"
+
+[dependencies]
+#rust-crypto = "0.2.36"
+#git2        = "0.9.1"
+time = "0.1.42"
+chrono = "0"
+io = "0.0.2"
+use = "0.0.0"
+sha256 = "1.2.2"
