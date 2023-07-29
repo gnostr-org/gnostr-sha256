@@ -47,6 +47,8 @@ fn example() {
     //println!("cwd={:?}",get_current_working_dir());
 
 }
+
+#[allow(unused)] //remove later
 fn strip_trailing_newline(input: &str) -> &str {
     input
         .strip_suffix("\r\n")
