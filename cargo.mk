@@ -3,7 +3,8 @@ cargo:## 	cargo  commands
 	@awk 'BEGIN {FS = ":.*?#####	"} /^[a-zA-Z_-]+:.*?#####	/ {printf "\033[36m%-15s\033[0m %s\n", $$1, $$2}' $(MAKEFILE_LIST)
 
 cargo-build:#####	cargo-build
-##make cargo-build && ./target/debug/gnostr-command gr README.md
+##make cargo-build && ./target/debug/gnostr-sha256 gr README.md
+##make cargo-build && ./target/debug/gnostr-sha256
 	@. $(HOME)/.cargo/env
 	@echo cargo b
 	@cargo b
@@ -29,8 +30,9 @@ cargo-test:#####	cargo-test
 	@echo cargo test
 	@cargo test
 cargo-build-release:#####	cargo-build-release
-##make cargo-build-release && ./target/release/gnostr-command gr README.md
-	@. $(HOME)/.cargo/env>/tmp/gnostr-command.log
+##make cargo-build-release && ./target/release/gnostr-sha256 gr README.md
+##make cargo-build-release && ./target/release/gnostr-sha256
+	@. $(HOME)/.cargo/env>/tmp/gnostr-sha256.log
 	#@echo cargo b --release
 	@cargo b --release
 
