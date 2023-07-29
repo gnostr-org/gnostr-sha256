@@ -62,22 +62,24 @@ report:## 	print some variables
 	@echo 'CARGO=${CARGO}'
 	@echo ''
 
-install:cargo-install## 	
+install:cargo-install## 	make cargo-install
 ##install: cargo-install
-run-tests:## 	run-tests
+tests:cargo-test## 	tests cargo-test
 ##run tests
-##	make gnostr-command
-	@$(MAKE) gnostr-command
-##	cargo test
+##make gnostr-sha256 install
+	@$(MAKE) gnostr-sha256 install
+##cargo test
 	cargo test
-##	RUST_BACKTRACE=1 cargo run -- gnostr README.md
+##RUST_BACKTRACE=1 cargo run -- gnostr README.md
 	RUST_BACKTRACE=1 cargo run -- gnostr README.md
-##	RUST_BACKTRACE=1 cargo run -- relays .git
+##RUST_BACKTRACE=1 cargo run -- relays .git
 	RUST_BACKTRACE=1 cargo run -- relays .git
-gnostr-command:cargo-install##
-##gnostr-command
-	@which gnostr-command
-
+	@echo "gnostr-sha256   =$(shell gnostr-sha256)" && echo "gnostr-sha256 \"\"=$(shell gnostr-sha256 "")"
+.PHONY:
+target/release/gnostr-sha256:
+		make cargo-build
+.PHONY:
+gnostr-sha256:target/release/gnostr-sha256
 
 -include docker.mk
 -include cargo.mk
