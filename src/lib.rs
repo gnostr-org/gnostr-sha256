@@ -15,39 +15,14 @@ impl Config {
     pub fn build(args: &[String]) -> Result<Config, &'static str> {
         if args.len() == 1 {
 
-            let query = digest("");
-
-            #[cfg(debug_assertions)]
-            let cloned_query = query.clone();
-            #[cfg(debug_assertions)]
-            println!("{:?}", print_type_of(&query));
-            #[cfg(debug_assertions)]
-            println!("{:?}", print_type_of(&cloned_query));
-            println!("{:?}", query);
-            #[cfg(debug_assertions)]
-            let s = &"hello world".to_string();
-            #[cfg(debug_assertions)]
-            let cloned_s = s.clone();
-            #[cfg(debug_assertions)]
-            println!("{:?}", print_type_of(&s));
-            #[cfg(debug_assertions)]
-            println!("{:?}", print_type_of(&cloned_s));
-
-
+            //empty sha256() case
+            let query = digest(br#""#);
+            println!("{}", query);
+            //println!("{:?}", query);//quoted output
             process::exit(0);
-
-            //return Err("not enough arguments");
         }
 
         let query = args[1].clone();
-        #[cfg(debug_assertions)]
-        let s = &"hello world".to_string();
-        #[cfg(debug_assertions)]
-        let cloned_s = s.clone();
-        #[cfg(debug_assertions)]
-        println!("{:?}", print_type_of(&s));
-        #[cfg(debug_assertions)]
-        println!("{:?}", print_type_of(&cloned_s));
 
         Ok(Config { query })
     }
@@ -104,3 +79,19 @@ e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 ";
         assert_eq!(vec!["e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"], search(&query, contents));
     }
 }
+
+//#[cfg(debug_assertions)]
+//let cloned_query = query.clone();
+//#[cfg(debug_assertions)]
+//println!("{:?}", print_type_of(&query));
+//#[cfg(debug_assertions)]
+//println!("{:?}", print_type_of(&cloned_query));
+//println!("{:?}", query);
+//#[cfg(debug_assertions)]
+//let s = &"hello world".to_string();
+//#[cfg(debug_assertions)]
+//let cloned_s = s.clone();
+//#[cfg(debug_assertions)]
+//println!("{:?}", print_type_of(&s));
+//#[cfg(debug_assertions)]
+//println!("{:?}", print_type_of(&cloned_s));

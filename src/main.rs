@@ -95,8 +95,8 @@ let config = Config::build(&args).unwrap_or_else(|_err| {
     process::exit(0);
 });
 
-println!("{}", strip_trailing_newline(&config.query));
-println!("{}", config.query);
+//println!("{}", strip_trailing_newline(&config.query));
+//println!("{}", config.query);
 
 if let Err(e) = gnostr_sha256::run(config) {
     println!("Application error: {e}");
