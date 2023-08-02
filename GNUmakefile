@@ -81,3 +81,4 @@ gnostr-command:cargo-install##
 
 -include docker.mk
 -include cargo.mk
+-include gnostr-sha256.mk
