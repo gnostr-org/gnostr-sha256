@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "sha-256.h"
+#include "gnostr-sha256.h"
 
 struct string_vector {
 	const char *input;
