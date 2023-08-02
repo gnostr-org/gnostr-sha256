@@ -29,7 +29,7 @@ jobs:
         run: |
           make all
           mv gnostr-sha256-test gnostr-sha256-test-$RUNNER_OS-$RUNNER_ARCH
-          shasum -a 256 gnostr-sha256-test-$RUNNER_OS-$RUNNER_ARCH > gnostr-sha256-test-$RUNNER_OS-$RUNNER_ARCH.sha256.txt
+          #shasum -a 256 gnostr-sha256-test-$RUNNER_OS-$RUNNER_ARCH > gnostr-sha256-test-$RUNNER_OS-$RUNNER_ARCH.sha256.txt
       - name: Save state
         run: echo "{name}={value}" >> $GITHUB_STATE
       - name: Set output
@@ -37,8 +37,8 @@ jobs:
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: ${{ matrix.os }}
+          automatic_release_tag: macos-release
           prerelease: false
           title: "Release Build"
           files: |
-            gnostr-*
+            README.md
