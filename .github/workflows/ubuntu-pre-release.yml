@@ -22,14 +22,19 @@ jobs:
         with:
           access_token: ${{ github.token }}
       - uses: actions/checkout@v3
-      - name: "printenv"
+        with:
+          fetch-depth: '0'
+          submodules: 'recursive'
+          set-safe-directory: 'true'
+      - name: printenv && sudo apt update && sudo apt install scdoc cmake -y
         run: |
-          printenv
+          printenv && sudo apt update && sudo apt install scdoc cmake -y
       - name: "Build pre-release"
         run: |
           make all
-          mv ./gnostr-sha256-test ./gnostr-sha256-test-$RUNNER_OS-$RUNNER_ARCH
+          mv gnostr-sha256-test gnostr-sha256-test-$RUNNER_OS-$RUNNER_ARCH
           shasum -a 256 gnostr-sha256-test-$RUNNER_OS-$RUNNER_ARCH > gnostr-sha256-test-$RUNNER_OS-$RUNNER_ARCH.sha256.txt
+          ls -a
       - name: Save state
         run: echo "{name}={value}" >> $GITHUB_STATE
       - name: Set output
@@ -42,4 +47,4 @@ jobs:
           prerelease: true
           title: "Development Build"
           files: |
-            *.o
+            gnostr-**

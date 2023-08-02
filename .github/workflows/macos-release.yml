@@ -20,16 +20,17 @@ jobs:
       - uses: styfle/cancel-workflow-action@0.11.0
         with:
           access_token: ${{ github.token }}
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v2
       - name: "printenv"
         run: |
-          brew install libtool autoconf automake
+          brew install libtool autoconf automake cmake
           printenv
       - name: "Build release"
         run: |
           make all
           mv gnostr-sha256-test gnostr-sha256-test-$RUNNER_OS-$RUNNER_ARCH
           shasum -a 256 gnostr-sha256-test-$RUNNER_OS-$RUNNER_ARCH > gnostr-sha256-test-$RUNNER_OS-$RUNNER_ARCH.sha256.txt
+          ls -a
       - name: Save state
         run: echo "{name}={value}" >> $GITHUB_STATE
       - name: Set output
@@ -41,4 +42,4 @@ jobs:
           prerelease: false
           title: "Release Build"
           files: |
-            gnostr-*
+            gnostr-**
