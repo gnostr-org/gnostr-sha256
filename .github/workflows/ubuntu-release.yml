@@ -1,0 +1,40 @@
+name: ubuntu-release
+
+# Controls when the action will run.
+on:
+  push:
+    tags:
+      - "v*"
+      - "v*.*.*-rc**"
+
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  release:
+    strategy:
+      matrix:
+        os: [ubuntu-20.04, ubuntu-22.04, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: styfle/cancel-workflow-action@0.11.0
+        with:
+          access_token: ${{ github.token }}
+      - uses: actions/checkout@v3
+      - name: "Build release"
+        run: |
+          make all
+          mv gnostr-sha256-$RUNNER_OS-$RUNNER_ARCH
+          shasum -a 256 gnostr-sha256-test-$RUNNER_OS-$RUNNER_ARCH > gnostr-sha256-test-$RUNNER_OS-$RUNNER_ARCH.sha256.txt
+      - name: Save state
+        run: echo "{name}={value}" >> $GITHUB_STATE
+      - name: Set output
+        run: echo "{name}={value}" >> $GITHUB_OUTPUT
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: ${{ matrix.os }}
+          prerelease: false
+          title: "Release Build"
+          files: |
+            *.o
