@@ -42,4 +42,4 @@ jobs:
           prerelease: true
           title: "Development Build"
           files: |
-            *.o:w
+            *.o
