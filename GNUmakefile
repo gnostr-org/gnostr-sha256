@@ -1,0 +1,1 @@
+-include gnostr-sha256.mk
