@@ -17,5 +17,6 @@ target
 *~
 *.o
 test
+!test/*.c
 *.swp
 gnostr-sha256-test
