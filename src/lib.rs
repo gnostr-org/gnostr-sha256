@@ -15,24 +15,7 @@ impl Config {
     pub fn build(args: &[String]) -> Result<Config, &'static str> {
         if args.len() == 1 {
 
-            let query = digest("");
-
-            #[cfg(debug_assertions)]
-            let cloned_query = query.clone();
-            #[cfg(debug_assertions)]
-            println!("{:?}", print_type_of(&query));
-            #[cfg(debug_assertions)]
-            println!("{:?}", print_type_of(&cloned_query));
-            println!("{:?}", query);
-            #[cfg(debug_assertions)]
-            let s = &"hello world".to_string();
-            #[cfg(debug_assertions)]
-            let cloned_s = s.clone();
-            #[cfg(debug_assertions)]
-            println!("{:?}", print_type_of(&s));
-            #[cfg(debug_assertions)]
-            println!("{:?}", print_type_of(&cloned_s));
-
+            println!("{}", digest("".to_string()));
 
             process::exit(0);
 
@@ -40,12 +23,16 @@ impl Config {
         }
 
         let query = args[1].clone();
+
         #[cfg(debug_assertions)]
         let s = &"hello world".to_string();
+
         #[cfg(debug_assertions)]
         let cloned_s = s.clone();
+
         #[cfg(debug_assertions)]
         println!("{:?}", print_type_of(&s));
+
         #[cfg(debug_assertions)]
         println!("{:?}", print_type_of(&cloned_s));
 
@@ -53,8 +40,7 @@ impl Config {
     }
 }
 pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
-    let val = digest(config.query);
-    println!("{}", val);
+    println!("{  }", digest(config.query));
     Ok(())
 }
 pub fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
