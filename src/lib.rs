@@ -13,23 +13,20 @@ pub fn print_type_of<T>(_: &T) -> String {
 impl Config {
 
     pub fn build(args: &[String]) -> Result<Config, &'static str> {
+
         if args.len() == 1 {
 
-            //empty sha256() case
-            let query = digest(br#""#);
-            println!("{}", query);
-            //println!("{:?}", query);//quoted output
+            println!("{}", digest("".to_string()));
             process::exit(0);
+
         }
 
         let query = args[1].clone();
-
         Ok(Config { query })
     }
 }
 pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
-    let val = digest(config.query);
-    println!("{}", val);
+    println!("{}", digest(config.query));
     Ok(())
 }
 pub fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
