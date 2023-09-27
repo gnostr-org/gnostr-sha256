@@ -1,7 +1,17 @@
 [package]
-name = "gnostr-sha256"
-version = "0.0.0"
-edition = "2018"
+name    = "gnostr-sha256"
+version = "0.0.3"
+authors = ["@RandyMcMillan <randy.lee.mcmillan@gmail.com>", "John <john@throttle.io>"]
+edition = "2021"
+rust-version = "1.71.1"
+description = "generate a sha256 hash"
+documentation = "https://gnostr.org"
+readme = "README.md"
+homepage = "https://gnostr.org/"
+repository = "https://github.com/gnostr-org/gnostr-sha256.git"
+license = "MIT OR Apache-2.0"
+keywords = ["git", "pow", "sha256", "gnostr", "nostr"]
+categories = ["command-line-utilities"]
 
 [dependencies]
 #rust-crypto = "0.2.36"
