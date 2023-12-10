@@ -213,6 +213,8 @@ fn hello_panic_query() {
 assert_eq!(strip_trailing_newline(&query), contents);
 }
 
+//REF:shell test
+//$ 0 2>/dev/null | sha256sum | sed 's/-//g'
 #[test]
 #[should_panic]
 fn panic_query() {
