@@ -1,6 +1,6 @@
 [package]
 name    = "gnostr-sha256"
-version = "0.0.4"
+version = "0.0.5"
 authors = ["@RandyMcMillan <randy.lee.mcmillan@gmail.com>", "John <john@throttle.io>"]
 edition = "2021"
 rust-version = "1.71.1"
