@@ -11,7 +11,7 @@ cargo-build:#####	cargo-build
 cargo-install:#####	cargo-install
 	@. $(HOME)/.cargo/env>/tmp/gnostr-command.log
 #@echo cargo install --path $(PWD)
-	@cargo install --path $(PWD)
+	@cargo install --path $(PWD) --force
 #@echo "export PATH=$(CARGO_PATH)/bin:$(PATH)"
 cargo-check:#####	cargo-check
 	@. $(HOME)/.cargo/env
